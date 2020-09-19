@@ -1,0 +1,45 @@
+version: '2'
+
+networks:
+    octobercms-network:
+
+services:
+    octobercms-mysql:
+        image: mysql:5.7
+        container_name: octobercms-mysql
+        restart: always
+        expose:
+            - "3306"
+        ports:
+            - "${LOCAL_IP}:3306:3306"
+        networks:
+            - octobercms-network
+        volumes:
+            - ./db:/var/lib/mysql:rw
+        env_file:
+            - .env
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+
+    octobercms-base:
+        user: root
+        build:
+            context: ./base
+            dockerfile: Dockerfile
+        container_name: octobercms-base
+        restart: always
+        expose:
+            - "8080"
+        ports:
+            - "${LOCAL_IP}:80:8080"
+        depends_on:
+            - octobercms-mysql
+        networks:
+            - octobercms-network
+        volumes:
+            - ${SOURCE_PATH}:/var/www/html:rw
+        env_file:
+            - .env
