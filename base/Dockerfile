@@ -14,7 +14,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=linux
 
 # Perform Installations
-COPY docker-runs.sh /root/
+COPY ./docker-runs.sh /root/docker-runs.sh
+RUN chmod +x "/root/docker-runs.sh"
 RUN /root/docker-runs.sh
 
 VOLUME /root/scripts
@@ -33,8 +34,8 @@ COPY ./php/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 COPY ./supervisord/supervisord.conf /etc/supervisord.conf
 
 ## Docker scripts
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-COPY wait.sh /usr/local/bin/wait.sh
+COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY ./wait.sh /usr/local/bin/wait.sh
 
 ENTRYPOINT wait.sh && docker-entrypoint.sh
 
