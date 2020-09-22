@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-mysql -u root -ptoor octobercms_db < /var/www/html/database.sql
+mysql -h octobercms-mysql -u root -ptoor octobercms_db < /var/www/html/database.sql
 
 cd /var/www/html
 
