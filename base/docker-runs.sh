@@ -88,7 +88,7 @@ echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sou
           pkg-config \
           libmcrypt-dev \
     && printf "\n" | pecl install mcrypt-1.0.2 \
-    && printf "\n" | pecl install xdebug \
+    #&& printf "\n" | pecl install xdebug \
     && echo "extension=/usr/lib/php/20180731/mcrypt.so" > /etc/php/7.3/fpm/conf.d/mcrypt.ini \
     && echo "extension=/usr/lib/php/20180731/mcrypt.so" > /etc/php/7.3/cli/conf.d/mcrypt.ini \
     && info "Installing Composer..." 1 \
