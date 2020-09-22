@@ -1,2 +1,6 @@
 .env
 db/
+vendor/
+storage/
+.idea/
+.htaccess
