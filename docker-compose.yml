@@ -1,5 +1,8 @@
 version: '2'
 
+volumes:
+    octobercms-db:
+
 networks:
     octobercms-network:
 
@@ -15,7 +18,7 @@ services:
         networks:
             - octobercms-network
         volumes:
-            - ./db:/var/lib/mysql:rw
+            - octobercms-db
         env_file:
             - .env
         environment:
