@@ -5,7 +5,7 @@ mysql -h octobercms-mysql -u root -ptoor octobercms_db < /var/www/html/database.
 
 cd /var/www/html
 
-composer install
+#composer install
 
 composer update
 
